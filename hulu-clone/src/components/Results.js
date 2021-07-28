@@ -8,7 +8,7 @@ function Results({movies}) {
 
     return (
         <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
-            <h1>ms</h1>
+           
 
             {movies.map((m) => {
         return (
