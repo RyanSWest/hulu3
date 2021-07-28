@@ -20,7 +20,10 @@ function App() {
   },[])
 
    
-   
+  const getTrending = ()=> {
+    axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&language=en-US`)
+    .then(res =>setMovies(res.data.results))
+  }
 
   const getGenre =(id)=> {
     axios.get( `${baseUrl}${API_KEY}&with_genres=${id}`)
@@ -30,11 +33,23 @@ function App() {
    return (
     <div className="App">
       
-      {/* <Header/> */}
+      <Header/>
       <nav> 
       <div className ='flex px-10 sm:px-20 text-2xl whitespace-nowrap
-            space-x-10 sm:space-x-20 overflow-x-scroll scrollbar-hide '>
-                  
+            space-x-10 sm:space-x-20 overflow-x-scroll scrollbar-hide
+            
+             
+            
+            '>
+               <h4
+           className='last:pr-24 cursor-pointer transition duration-100 transform hover:scale-125 hover:text-white
+           active:text-red-500'
+           onClick={()=> getTrending()}
+           
+           >Trending</h4>
+
+
+           
       {requests.map (r=> {
         return(
 
