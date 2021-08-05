@@ -11,10 +11,8 @@ import {
 } from "@heroicons/react/outline";
 
 
-function Header({searcher, openSearchBar}) {
-    const [search , setSearch]= useState(false)
-    const [text, setText]=useState('')
-    const [movieToSearch, setMovieToSearch]= useState('')
+function Header({  openSearchBar}) {
+     
 
  
     
@@ -54,6 +52,9 @@ function Header({searcher, openSearchBar}) {
           
         
         />
+
+
+ 
     </header>
     )
 }
