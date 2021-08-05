@@ -10,6 +10,14 @@ const API_KEY = "32f21cfa647f7c3b7282a6473a7cfdc4";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [movieToSearch, setMovieToSearch]=useState('')
+  const [search, setSearch]=useState(false)
+  
+
+  const openSearchBar =()=> {
+    setSearch(!search)
+  }
+   
 
  
   const baseUrl =`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres`
@@ -30,10 +38,66 @@ function App() {
     .then(res => setMovies(res.data.results))
   }
 
+   const searcher= (q)=> {
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${q}
+       `)
+       .then(res=> setMovies(res.data.results)  )
+
+       console.log("MOVIES", movies)
+         
+       
+       
+       
+       
+       
+         
+  }
+
+
+ 
+   
+
+   
+
+   
+
    return (
     <div className="App">
       
-      <Header/>
+      <Header
+      
+       openSearchBar= {openSearchBar}/>
+
+ { search && (
+  <div className = ' flex flex-col items-center pt-0 h-40 '>
+  
+  <h1 className= '#DC2626'>Search</h1>
+  <input 
+  className ='rounded-xl bg-gray-50 w-80 m-4 p-1.5'
+  name ={movieToSearch}
+  type = 'text'
+  placeholder= 'enter a movie'
+  value={movieToSearch}
+  onChange={(e)=>setMovieToSearch(e.target.value)}
+  
+  />
+   
+  <button
+  className='rounded-xl text-gray-50 bg-gray-400 w-60 m-4 p-1.5  hover:bg-gray-50  text-gray-600'
+  
+  onClick ={(e)=>
+  
+    searcher(movieToSearch)}
+   
+   >Search</button>
+   
+   
+
+    </div>
+
+
+)}
+ 
       <nav> 
       <div className ='flex px-10 sm:px-20 text-2xl whitespace-nowrap
             space-x-10 sm:space-x-20 overflow-x-scroll scrollbar-hide

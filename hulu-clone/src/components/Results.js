@@ -7,10 +7,14 @@ function Results({movies}) {
     const BASE_URL = "https://image.tmdb.org/t/p/original";
 
     return (
-        <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
+        <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3
+        3xl:flex
+        
+        ">
            
-
+              
             {movies.map((m) => {
+                // console.log("MOVIES", movies)
         return (
           <div key = {m.id}
           className = "p-2 group cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z -50">
@@ -18,9 +22,9 @@ function Results({movies}) {
           
   
               <img 
-              className = 'image'
+              className = 'h-1000 w-1920'
               
-              src = {`${BASE_URL}${m.backdrop_path}`}  />
+              src = {`${BASE_URL}${m.backdrop_path || m.poster_path} `}  />
 
 
               <div>
