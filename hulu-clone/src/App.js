@@ -40,6 +40,10 @@ function App() {
       .get(`${baseUrl}${API_KEY}&with_genres=${id}`)
       .then((res) => setMovies(res.data.results));
   };
+  const topRated=()=> {
+    axios.get(`${baseUrl}${API_KEY}/discover/movie?sort_by=popularity.desc`)
+    .then((res)=> setMovies(res.data.results))
+  }
 
   const searcher = (q) => {
     axios
@@ -51,6 +55,7 @@ function App() {
 
     console.log("MOVIES", movies);
   };
+  https://api.themoviedb.org/3/search/movie?api_key=32f21cfa647f7c3b7282a6473a7cfdc4&query=john wick
 
   return (
     <div className="App">
@@ -60,7 +65,7 @@ function App() {
         <div className=" flex flex-col items-center pt-0 h-40 ">
           <h1 className="#DC2626">Search</h1>
           <input
-            className="rounded-xl bg-gray-50 w-80 m-4 p-1.5"
+            className="rounded-xl bg-gray-50 w-80 m-4 p-1.5 placeholder-gray-600::placeholder"
             name={movieToSearch}
             type="text"
             placeholder="enter a movie"
@@ -92,6 +97,14 @@ function App() {
             onClick={() => getTrending()}
           >
             Trending
+          </h4>
+          
+          <h4
+            className="last:pr-24 cursor-pointer transition duration-100 transform hover:scale-125 hover:text-white
+           active:text-red-500"
+            onClick={() => topRated()}
+          >
+            Top Rated
           </h4>
 
           {requests.map((r) => {
